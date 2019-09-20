@@ -1,0 +1,12 @@
+- name: copy mongodb-org-3.6.repo
+  copy:
+    src: ../files/mongodb-org-3.6.repo
+    dest: /etc/yum.repos.d
+
+- name: yum install mongodb
+  yum: name=mongodb-org state=installed
+
+- name: start & enable mongodb
+  systemd: 
+    name: mongod
+    enabled: yes

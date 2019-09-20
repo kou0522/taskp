@@ -1,0 +1,32 @@
+- name: install ius repository
+  yum: name=https://centos7.iuscommunity.org/ius-release.rpm
+
+- name: install python36 & pip
+  yum: name={{ item }} state=installed
+  with_items:
+    - python36u
+    - python36u-libs
+    - python36u-devel
+    - python36u-pip
+
+- name: create python3 symbolic link
+  file:
+    src: "/bin/python3.6"
+    dest: "/bin/python3"
+    state: link
+
+- name: create pip symbolic link
+  file:
+    src: "/bin/pip3.6"
+    dest: "/bin/pip"
+    state: link
+
+- name: install pip
+  pip: name={{ item }}
+  with_items:
+    - flask
+    - pymongo
+    - selenium
+    - requests
+    - beautifulsoup4
+    - lxml

@@ -1,0 +1,11 @@
+- hosts: all
+  user: vagrant
+  become: yes
+  vars:
+    config_path: '/vagrant'
+  roles:
+    - mongodb
+    - python36&pip
+    - zip&unzip
+    - google-driver
+    - git

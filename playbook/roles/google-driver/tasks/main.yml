@@ -1,0 +1,17 @@
+- name: copy google-chrome.repo
+  copy:
+    src: ../files/google-chrome.repo
+    dest: /etc/yum.repos.d/google-chrome.repo
+
+- name: yum install google-chrome-stable
+  yum: name={{ item }}
+  with_items:
+    - google-chrome-stable 
+    
+- name: file Download
+  get_url: url="https://chromedriver.storage.googleapis.com/77.0.3865.10/chromedriver_linux64.zip" dest=
+  
+- name: unzip file
+  unarchive:
+    src=chromedriver_linux64.zip
+    dest=/usr/local/bin/
